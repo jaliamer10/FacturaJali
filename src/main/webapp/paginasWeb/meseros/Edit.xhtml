@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMeserosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMeserosLabel_MEMeseroID}" for="MEMeseroID" />
+                    <h:inputText id="MEMeseroID" value="#{meserosController.selected.MEMeseroID}" title="#{bundle.EditMeserosTitle_MEMeseroID}" required="true" requiredMessage="#{bundle.EditMeserosRequiredMessage_MEMeseroID}"/>
+                    <h:outputLabel value="#{bundle.EditMeserosLabel_MENombreMesero}" for="MENombreMesero" />
+                    <h:inputText id="MENombreMesero" value="#{meserosController.selected.MENombreMesero}" title="#{bundle.EditMeserosTitle_MENombreMesero}" />
+                    <h:outputLabel value="#{bundle.EditMeserosLabel_MEHorario}" for="MEHorario" />
+                    <h:inputText id="MEHorario" value="#{meserosController.selected.MEHorario}" title="#{bundle.EditMeserosTitle_MEHorario}" />
+                </h:panelGrid>
+                <h:commandLink action="#{meserosController.update}" value="#{bundle.EditMeserosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMeserosViewLink}"/>
+                <br />
+                <h:commandLink action="#{meserosController.prepareList}" value="#{bundle.EditMeserosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMeserosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

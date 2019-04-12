@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions"
+
+>
+          
+    <p:growl id="msj" autoUpdate="true" showDetail="true" />
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title" >
+            <h:outputText value="#{bundle.FacturaVentasTitulo_Pagina}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <p:panelGrid columns="8">
+                    <p:outputLabel value="#{bundle.CreateFacturaLabel_CLIENTESCLClienteID}" for="CLIENTESCLClienteID" />
+                    <p:selectOneMenu id="CLIENTESCLClienteID" value="#{ventaController.venta.cliente}"  converter="omnifaces.SelectItemsConverter"  required="true" requiredMessage="#{bundle.CreateFacturaRequiredMessage_CLIENTESCLClienteID}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"  itemLabel="#{clientesController.selected.CLNombre}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateFacturaLabel_MEDIOPAGOMPMedioPagoID}" for="MEDIOPAGOMPMedioPagoID" />
+                    <p:selectOneMenu id="MEDIOPAGOMPMedioPagoID" value="#{ventaController.venta.medioPago}" converter="omnifaces.SelectItemsConverter"  required="true" requiredMessage="#{bundle.CreateFacturaRequiredMessage_MEDIOPAGOMPMedioPagoID}">
+                        <f:selectItems value="#{mediopagoController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid> 
+                <p:panelGrid columns="6">
+                    <p:outputLabel value="#{bundle.CreateFacturaLabel_PEDIDOSPEPedidoID}" for="PEDIDOSPEPedidoID" />
+                    <p:selectOneListbox id="PEDIDOSPEPedidoID" value="#{ventaController.venta.pedido}"  converter="omnifaces.SelectItemsConverter" required="true" requiredMessage="#{bundle.CreateFacturaRequiredMessage_PEDIDOSPEPedidoID}" >
+                        <f:selectItems value="#{pedidosController.itemsAvailableSelectOneSF}"/>
+                    </p:selectOneListbox>
+                    <p:outputLabel value="#{bundle.CreateDetallefacturaLabel_PRODUCTOSPRProductoID}" for="PRODUCTOSPRProductoID" />
+                    <p:selectOneMenu id="PRODUCTOSPRProductoID" value="#{ventaController.venta.producto}" converter="omnifaces.SelectItemsConverter"  required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_PRODUCTOSPRProductoID}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateDetallefacturaLabel_DFCantidad}" for="DFCantidad" />
+                    <p:inputText id="DFCantidad" value="#{ventaController.venta.cantidad}" title="#{bundle.CreateDetallefacturaTitle_DFCantidad}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_DFCantidad}"/>
+                </p:panelGrid>        
+                <p:commandButton value="Agregar" binding="#{save}" actionListener="#{ventaController.agregar()}" update="detalle"  />
+
+                <p:dataTable id="detalle" value="#{ventaController.ventaDetalle}" var="detFac" 
+                             rows="10"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="10,20,30"
+                             >
+                    <p:column headerText="#{bundle.CreateDetallefacturaLabel_PRODUCTOSPRProductoID}" >
+                        <p:outputLabel value="#{detFac.producto.PRNombreProducto}" />
+                    </p:column>
+                    <p:column headerText="#{bundle.CreateDetallefacturaLabel_DFCantidad}" >
+                        #{detFac.cantidad}
+                        
+                    </p:column>
+
+                    <p:column headerText="#{bundle.CreateProductosTitle_PRCostoUnitario}" >
+                        #{detFac.producto.PRCostoUnitario}
+                    </p:column>
+                    <p:column headerText="#{bundle.CreateProductosTitle_PRImpuestoUnidad}" >
+                        #{detFac.producto.PRImpuestoUnidad}
+                    </p:column>
+                    <p:column headerText="#{bundle.FacturaVentasTitulo_ValorTotal}" >
+                        #{detFac.valorTotal}
+                    </p:column>
+                    
+                </p:dataTable>    
+                <p:commandButton value="Registrar" actionListener="#{ventaController.registrar()}" action="Factura?faces-redirect=true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

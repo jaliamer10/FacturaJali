@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_PRProductoID}" for="PRProductoID" />
+                    <h:inputText id="PRProductoID" value="#{productosController.selected.PRProductoID}" title="#{bundle.CreateProductosTitle_PRProductoID}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_PRProductoID}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_PRNombreProducto}" for="PRNombreProducto" />
+                    <h:inputText id="PRNombreProducto" value="#{productosController.selected.PRNombreProducto}" title="#{bundle.CreateProductosTitle_PRNombreProducto}" />
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_PRCostoUnitario}" for="PRCostoUnitario" />
+                    <h:inputText id="PRCostoUnitario" value="#{productosController.selected.PRCostoUnitario}" title="#{bundle.CreateProductosTitle_PRCostoUnitario}" />
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_PRImpuestoUnidad}" for="PRImpuestoUnidad" />
+                    <h:inputText id="PRImpuestoUnidad" value="#{productosController.selected.PRImpuestoUnidad}" title="#{bundle.CreateProductosTitle_PRImpuestoUnidad}" />
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_PRUnidadMedida}" for="PRUnidadMedida" />
+                    <h:inputText id="PRUnidadMedida" value="#{productosController.selected.PRUnidadMedida}" title="#{bundle.CreateProductosTitle_PRUnidadMedida}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productosController.create}" value="#{bundle.CreateProductosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productosController.prepareList}" value="#{bundle.CreateProductosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

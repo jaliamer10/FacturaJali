@@ -1,0 +1,7 @@
+#surefire
+#Thu Apr 11 20:28:08 COT 2019
+maven.ext.class.path=C\:\\Program Files (x86)\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=D\:\\Proyectos\\FacturaJ
+file.encoding=UTF-8
+localRepository=C\:\\Users\\Alberto\\.m2\\repository
+basedir=D\:\\Proyectos\\FacturaJ

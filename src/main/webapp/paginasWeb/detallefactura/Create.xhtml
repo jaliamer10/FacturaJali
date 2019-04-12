@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDetallefacturaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_DFCantidad}" for="DFCantidad" />
+                    <h:inputText id="DFCantidad" value="#{detallefacturaController.selected.DFCantidad}" title="#{bundle.CreateDetallefacturaTitle_DFCantidad}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_DFCantidad}"/>
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_DFCostoPedido}" for="DFCostoPedido" />
+                    <h:inputText id="DFCostoPedido" value="#{detallefacturaController.selected.DFCostoPedido}" title="#{bundle.CreateDetallefacturaTitle_DFCostoPedido}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_DFCostoPedido}"/>
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_DFImpuestoPedido}" for="DFImpuestoPedido" />
+                    <h:inputText id="DFImpuestoPedido" value="#{detallefacturaController.selected.DFImpuestoPedido}" title="#{bundle.CreateDetallefacturaTitle_DFImpuestoPedido}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_DFImpuestoPedido}"/>
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_DFValorPedido}" for="DFValorPedido" />
+                    <h:inputText id="DFValorPedido" value="#{detallefacturaController.selected.DFValorPedido}" title="#{bundle.CreateDetallefacturaTitle_DFValorPedido}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_DFValorPedido}"/>
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_DFIndice}" for="DFIndice" />
+                    <h:inputText id="DFIndice" value="#{detallefacturaController.selected.DFIndice}" title="#{bundle.CreateDetallefacturaTitle_DFIndice}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_DFIndice}"/>
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_PEDIDOSPEPedidoID}" for="PEDIDOSPEPedidoID" />
+                    <h:selectOneMenu id="PEDIDOSPEPedidoID" value="#{detallefacturaController.selected.PEDIDOSPEPedidoID}" title="#{bundle.CreateDetallefacturaTitle_PEDIDOSPEPedidoID}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_PEDIDOSPEPedidoID}">
+                        <f:selectItems value="#{pedidosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_PRODUCTOSPRProductoID}" for="PRODUCTOSPRProductoID" />
+                    <h:selectOneMenu id="PRODUCTOSPRProductoID" value="#{detallefacturaController.selected.PRODUCTOSPRProductoID}" title="#{bundle.CreateDetallefacturaTitle_PRODUCTOSPRProductoID}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_PRODUCTOSPRProductoID}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDetallefacturaLabel_FACTURAFAFacturaID}" for="FACTURAFAFacturaID" />
+                    <h:selectOneMenu id="FACTURAFAFacturaID" value="#{detallefacturaController.selected.FACTURAFAFacturaID}" title="#{bundle.CreateDetallefacturaTitle_FACTURAFAFacturaID}" required="true" requiredMessage="#{bundle.CreateDetallefacturaRequiredMessage_FACTURAFAFacturaID}">
+                        <f:selectItems value="#{facturaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detallefacturaController.create}" value="#{bundle.CreateDetallefacturaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{detallefacturaController.prepareList}" value="#{bundle.CreateDetallefacturaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDetallefacturaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

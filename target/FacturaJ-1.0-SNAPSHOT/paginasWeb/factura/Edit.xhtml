@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_FAFacturaID}" for="FAFacturaID" />
+                    <h:inputText id="FAFacturaID" value="#{facturaController.selected.FAFacturaID}" title="#{bundle.EditFacturaTitle_FAFacturaID}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_FAFacturaID}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_FAFechaHora}" for="FAFechaHora" />
+                    <h:inputText id="FAFechaHora" value="#{facturaController.selected.FAFechaHora}" title="#{bundle.EditFacturaTitle_FAFechaHora}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_FACostoFactura}" for="FACostoFactura" />
+                    <h:inputText id="FACostoFactura" value="#{facturaController.selected.FACostoFactura}" title="#{bundle.EditFacturaTitle_FACostoFactura}" />
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_FAImpuestoFactura}" for="FAImpuestoFactura" />
+                    <h:inputText id="FAImpuestoFactura" value="#{facturaController.selected.FAImpuestoFactura}" title="#{bundle.EditFacturaTitle_FAImpuestoFactura}" />
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_FAValorTotal}" for="FAValorTotal" />
+                    <h:inputText id="FAValorTotal" value="#{facturaController.selected.FAValorTotal}" title="#{bundle.EditFacturaTitle_FAValorTotal}" />
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_CLIENTESCLClienteID}" for="CLIENTESCLClienteID" />
+                    <h:selectOneMenu id="CLIENTESCLClienteID" value="#{facturaController.selected.CLIENTESCLClienteID}" title="#{bundle.EditFacturaTitle_CLIENTESCLClienteID}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_CLIENTESCLClienteID}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_MEDIOPAGOMPMedioPagoID}" for="MEDIOPAGOMPMedioPagoID" />
+                    <h:selectOneMenu id="MEDIOPAGOMPMedioPagoID" value="#{facturaController.selected.MEDIOPAGOMPMedioPagoID}" title="#{bundle.EditFacturaTitle_MEDIOPAGOMPMedioPagoID}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_MEDIOPAGOMPMedioPagoID}">
+                        <f:selectItems value="#{mediopagoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_MESASMSMesaID}" for="MESASMSMesaID" />
+                    <h:selectOneMenu id="MESASMSMesaID" value="#{facturaController.selected.MESASMSMesaID}" title="#{bundle.EditFacturaTitle_MESASMSMesaID}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_MESASMSMesaID}">
+                        <f:selectItems value="#{mesasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_PEDIDOSPEPedidoID}" for="PEDIDOSPEPedidoID" />
+                    <h:selectOneMenu id="PEDIDOSPEPedidoID" value="#{facturaController.selected.PEDIDOSPEPedidoID}" title="#{bundle.EditFacturaTitle_PEDIDOSPEPedidoID}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_PEDIDOSPEPedidoID}">
+                        <f:selectItems value="#{pedidosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_MESEROSMEMeseroID}" for="MESEROSMEMeseroID" />
+                    <h:selectOneMenu id="MESEROSMEMeseroID" value="#{facturaController.selected.MESEROSMEMeseroID}" title="#{bundle.EditFacturaTitle_MESEROSMEMeseroID}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_MESEROSMEMeseroID}">
+                        <f:selectItems value="#{meserosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{facturaController.update}" value="#{bundle.EditFacturaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturaViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturaController.prepareList}" value="#{bundle.EditFacturaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

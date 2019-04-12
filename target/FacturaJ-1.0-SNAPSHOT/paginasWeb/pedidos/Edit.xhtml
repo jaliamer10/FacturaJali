@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPedidosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_PEPedidoID}" for="PEPedidoID" />
+                    <h:inputText id="PEPedidoID" value="#{pedidosController.selected.PEPedidoID}" title="#{bundle.EditPedidosTitle_PEPedidoID}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_PEPedidoID}"/>
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_PEFacturado}" for="PEFacturado" />
+                    <h:inputText id="PEFacturado" value="#{pedidosController.selected.PEFacturado}" title="#{bundle.EditPedidosTitle_PEFacturado}" />
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_MESASMSMesaID}" for="MESASMSMesaID" />
+                    <h:selectOneMenu id="MESASMSMesaID" value="#{pedidosController.selected.MESASMSMesaID}" title="#{bundle.EditPedidosTitle_MESASMSMesaID}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_MESASMSMesaID}">
+                        <f:selectItems value="#{mesasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_MESEROSMEMeseroID}" for="MESEROSMEMeseroID" />
+                    <h:selectOneMenu id="MESEROSMEMeseroID" value="#{pedidosController.selected.MESEROSMEMeseroID}" title="#{bundle.EditPedidosTitle_MESEROSMEMeseroID}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_MESEROSMEMeseroID}">
+                        <f:selectItems value="#{meserosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pedidosController.update}" value="#{bundle.EditPedidosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPedidosViewLink}"/>
+                <br />
+                <h:commandLink action="#{pedidosController.prepareList}" value="#{bundle.EditPedidosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPedidosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
